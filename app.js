@@ -6,6 +6,10 @@ app.get('/quotes', (req, res) => {
   res.json(data)
 });
 //send a GET request to /quote/:id to READ a quote
+app.get('/quotes/:id', (req, res) => {
+  const id = req.params.id;
+  res.json(data)
+});
 //send a POST request /quotes to CREATE a new quote
 //send a PUT request /quotes/:id to UPDATE a quote
 //send a DELETE request to quotes/:id to DELETE a quote
