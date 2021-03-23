@@ -1,12 +1,10 @@
 const express = require('express');
 const app = express();
 
-app.get('/greetings', (req, res) => {
-  res.json({ greeting: 'Yo, fuckas.' })
-});
-
-
 //send a GET request to /quotes to READ a list of quotes
+app.get('/quotes', (req, res) => {
+  res.json(data)
+});
 //send a GET request to /quote/:id to READ a quote
 //send a POST request /quotes to CREATE a new quote
 //send a PUT request /quotes/:id to UPDATE a quote
