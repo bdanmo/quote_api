@@ -7,8 +7,8 @@ app.get('/quotes', (req, res) => {
 });
 //send a GET request to /quote/:id to READ a quote
 app.get('/quotes/:id', (req, res) => {
-  const id = req.params.id;
-  res.json(data)
+  const quote = data.quotes.find(quote => quote.id == req.params.id);
+  res.json(quote)
 });
 //send a POST request /quotes to CREATE a new quote
 //send a PUT request /quotes/:id to UPDATE a quote
