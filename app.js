@@ -7,23 +7,36 @@ app.use(express.json());
 
 //send a GET request to /quotes to READ a list of quotes
 app.get('/quotes', async (req, res) => {
-  const quotes = await records.getQuotes();
-  res.json(quotes);
+  try {
+    const quotes = await records.getQuotes();
+    res.json(quotes);
+  } catch (err) {
+    res.json({message: err.message})
+  }
 });
 
 //send a GET request to /quote/:id to READ a quote
 app.get('/quotes/:id', async (req, res) => {
-  const quote = await records.getQuote(req.params.id);
-  res.json(quote);
+  try {
+    const quote = await records.getQuote(req.params.id);
+    res.json(quote);
+  } catch (err) {
+      res.json({message: err.message})
+  }
 });
 
 //send a POST request /quotes to CREATE a new quote
-app.post('/quotes', (req, res) => {
-  const quote = records.createQuote({
-    quote: req.body.quote,
-    author: req.body.author
-  });
-  res.json(quote);
+app.post('/quotes', async (req, res) => {
+  try {
+    const quote = await records.createQuote({
+      quote: req.body.quote,
+      author: req.body.author
+    });
+    res.json(quote);
+  } catch (err) {
+    res.json({ message: err.message });
+  }
+  
 });
 
 //send a PUT request /quotes/:id to UPDATE a quote
