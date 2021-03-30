@@ -32,9 +32,9 @@ app.post('/quotes', async (req, res) => {
       quote: req.body.quote,
       author: req.body.author
     });
-    res.json(quote);
+    res.status(201).json(quote);
   } catch (err) {
-    res.json({ message: err.message });
+    res.status(500).json({ message: err.message });
   }
   
 });
