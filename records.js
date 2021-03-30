@@ -53,7 +53,8 @@ async function getRandomQuote(){
 
 /**
  * Creates a new quote record 
- * @param {Object} newRecord - Object containing info for new quote: the quote text, author and year 
+ * @param {Object} newRecord - Object containing info for new quote: the quote text, author and year
+ * @returns {Object} The new record object
  */
 async function createQuote(newRecord) {
   const quotes = await getQuotes(); 
