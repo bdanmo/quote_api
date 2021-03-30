@@ -23,6 +23,7 @@ app.post('/quotes', (req, res) => {
     quote: req.body.quote,
     author: req.body.author
   });
+  res.json(quote);
 });
 
 //send a PUT request /quotes/:id to UPDATE a quote
