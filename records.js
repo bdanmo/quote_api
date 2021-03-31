@@ -67,7 +67,7 @@ async function createQuote(newRecord) {
 
 /**
  * Updates a single record 
- * @param {Object} newQuote - An object containing the changes to quote: quote and author
+ * @param {Object} newQuote - Quote object with updated quote text and/or author
  */
 async function updateQuote(newQuote){
   const quotes = await getQuotes();
