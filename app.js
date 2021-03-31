@@ -48,6 +48,22 @@ app.post('/quotes', async (req, res) => {
 });
 
 //send a PUT request /quotes/:id to UPDATE a quote
+app.put('/quotes/:id', async (req, res) => {
+  try {
+    const quote = await records.getQuote(req.params.id);
+    if (quote) {
+      quote.quote = req.body.author;
+      quote.author = req.body.quote;
+      await records.updateQuote(quote);
+      res.status(204).end();
+    } else {
+      res.status(404).json({message: 'Quote was not found.'})
+    }
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+  
+});
 //send a DELETE request to quotes/:id to DELETE a quote
 //send a GET request to /quotes/quote/random READ a random quote
 
