@@ -1,3 +1,4 @@
+const { json } = require('express');
 const express = require('express');
 const app = express();
 
@@ -65,6 +66,19 @@ app.put('/quotes/:id', async (req, res) => {
   
 });
 //send a DELETE request to quotes/:id to DELETE a quote
+app.delete('/quotes/:id', async (req, res) => {
+  try {
+    const quote = await records.getQuote(req.params.id);
+    if (quote) {
+      await records.deleteQuote(quote);
+      res.status(204).end();
+    } else {
+      res.status(404).json({ message: "There's no quote to delete!" });
+    }
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+})
 //send a GET request to /quotes/quote/random READ a random quote
 
 app.listen(3000, () => console.log('Quote API listening on port 3000!'));
