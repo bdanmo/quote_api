@@ -4,17 +4,27 @@ const app = express();
 
 const records = require('./records');
 
+function asyncHandler(cb){
+  return async (req, res, next) => {
+    try {
+      await cb(req, res, next);
+    } catch (err) {
+      next(err);
+    }
+  }
+}
+
 app.use(express.json());
 
 //send a GET request to /quotes to READ a list of quotes
-app.get('/quotes', async (req, res, next) => {
+app.get('/quotes', asyncHandler(async(req, res, next) => {
   try {
     const quotes = await records.getQuotes();
     res.json(quotes);
   } catch (err) {
     next(err);
   }
-});
+}));
 
 //send a GET request to /quote/:id to READ a quote
 app.get('/quotes/:id', async (req, res, next) => {
